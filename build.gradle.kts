@@ -16,10 +16,6 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint")
 }
 
-gitSemVer {
-    version = computeGitSemVer()
-}
-
 repositories {
     mavenCentral()
 }
