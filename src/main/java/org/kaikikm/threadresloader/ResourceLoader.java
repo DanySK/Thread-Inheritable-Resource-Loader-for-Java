@@ -34,7 +34,8 @@ public final class ResourceLoader {
     }
 
     /**
-     * Set current thread resource loader with default thread resource loading settings, specified by {@link Thread#setContextClassLoader(ClassLoader)}.
+     * Set current thread resource loader with default thread resource loading settings,
+     * specified by {@link Thread#setContextClassLoader(ClassLoader)}.
      * Adds given URLs to default.
      * 
      *  @param urls URLs that have to be added
