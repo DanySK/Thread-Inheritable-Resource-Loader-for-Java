@@ -84,7 +84,13 @@ public class TestThreadResLoader {
      *
      */
     @Test
-    public void testClassLoading() throws InstantiationException, IllegalAccessException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, MalformedURLException {
+    public void testClassLoading() throws
+        InstantiationException,
+        IllegalAccessException,
+        ClassNotFoundException,
+        NoSuchMethodException,
+        InvocationTargetException,
+        MalformedURLException {
         try {
             ResourceLoader.classForName("TestClass");
             fail();
