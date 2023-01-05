@@ -1,7 +1,4 @@
 [versions]
-android-plugins = "7.0.0"
-kotest = "5.5.4"
-kotlin = "1.8.0"
 
 [libraries]
 commons-io = "commons-io:commons-io:2.11.0"
