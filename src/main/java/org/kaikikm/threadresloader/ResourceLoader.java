@@ -52,7 +52,7 @@ public final class ResourceLoader {
     *  @param urls URLs that have to be added
     */
     public static void setURLs(final Collection<URL> urls) {
-        setURLs(urls.toArray(new URL[urls.size()]));
+        setURLs(urls.toArray(new URL[0]));
     }
 
     /**
@@ -74,7 +74,7 @@ public final class ResourceLoader {
      *  @param urls URLs that have to be added
      */
     public static void injectURLs(final Collection<URL> urls) {
-        injectURLs(urls.toArray(new URL[urls.size()]));
+        injectURLs(urls.toArray(new URL[0]));
     }
 
     /**
