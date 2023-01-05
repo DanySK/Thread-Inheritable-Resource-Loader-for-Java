@@ -1,0 +1,18 @@
+[versions]
+android-plugins = "7.0.0"
+kotest = "5.5.4"
+kotlin = "1.8.0"
+
+[libraries]
+commons-io = "commons-io:commons-io:2.11.0"
+guava = "com.google.guava:guava:30.1.1-jre"
+junit = "junit:junit:4.13.2"
+
+[bundles]
+
+[plugins]
+gitSemVer = "org.danilopianini.git-sensitive-semantic-versioning-gradle-plugin:1.0.0"
+java-qa = "org.danilopianini.gradle-java-qa:0.41.0"
+multiJvmTesting = "org.danilopianini.multi-jvm-test-plugin:0.4.15"
+publishOnCentral = "org.danilopianini.publish-on-central:2.0.6"
+taskTree = "com.dorongold.task-tree:2.1.0"

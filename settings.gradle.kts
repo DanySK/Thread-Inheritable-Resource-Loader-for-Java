@@ -1,19 +1,19 @@
-import org.danilopianini.VersionAliases.justAdditionalAliases
-
 plugins {
-    id("de.fayard.refreshVersions") version "0.10.1"
+    id("com.gradle.enterprise") version "3.11.4"
+    id("org.danilopianini.gradle-pre-commit-git-hooks") version "1.0.20"
 }
 
-refreshVersions {
-    extraArtifactVersionKeyRules = justAdditionalAliases
+gradleEnterprise {
+    buildScan {
+        termsOfServiceUrl = "https://gradle.com/terms-of-service"
+        termsOfServiceAgree = "yes"
+        publishOnFailure()
+    }
 }
 
-buildscript {
-    repositories {
-        gradlePluginPortal()
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.danilopianini:refreshversions-aliases:+")
-    }
+gitHooks {
+    commitMsg { conventionalCommits() }
+    createHooks()
 }
+
+rootProject.name = "thread-inheritable-resource-loader".toLowerCase()

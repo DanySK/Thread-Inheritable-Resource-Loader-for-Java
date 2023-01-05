@@ -1,19 +1,11 @@
-import com.github.spotbugs.snom.SpotBugsTask
-
 plugins {
     `java-library`
     signing
-    `maven-publish`
-    `project-report`
-    `build-dashboard`
-    pmd
-    checkstyle
-    jacoco
-    id("com.github.spotbugs")
-    id("org.danilopianini.git-sensitive-semantic-versioning")
-    id("org.danilopianini.javadoc.io-linker")
-    id("org.danilopianini.publish-on-central")
-    id("org.jlleitschuh.gradle.ktlint")
+    alias(libs.plugins.gitSemVer)
+    alias(libs.plugins.java.qa)
+    alias(libs.plugins.multiJvmTesting)
+    alias(libs.plugins.publishOnCentral)
+    alias(libs.plugins.taskTree)
 }
 
 repositories {
@@ -21,46 +13,17 @@ repositories {
 }
 
 dependencies {
-    testImplementation("commons-io:commons-io:_")
-    testImplementation("com.google.guava:guava:_")
-    testImplementation("junit:junit:_")
-}
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-}
-
-spotbugs {
-    ignoreFailures.set(true)
-    setEffort("max")
-    setReportLevel("low")
-    showProgress.set(true)
-    val excludeFile = File("${project.rootProject.projectDir}/config/spotbugs/excludes.xml")
-    if (excludeFile.exists()) {
-        excludeFilter.set(excludeFile)
-    }
-}
-
-tasks.withType<SpotBugsTask> {
-    reports {
-        create("html") {
-            enabled = true
-        }
-    }
-}
-
-pmd {
-    ruleSets = listOf()
-    ruleSetConfig = resources.text.fromFile("${project.rootProject.projectDir}/config/pmd/pmd.xml")
+    testImplementation(libs.commons.io)
+    testImplementation(libs.guava)
+    testImplementation(libs.junit)
 }
 
 group = "org.danilopianini"
 publishOnCentral {
-    projectDescription = extra["projectDescription"].toString()
-    projectUrl = "https://travis-ci.org/DanySK/Thread-Inheritable-Resource-Loader-for-Java"
-    projectLongName = "Thread Inheritable Resource Loader for Java"
-    scmConnection = "git:git@github.com:DanySK/Thread-Inheritable-Resource-Loader-for-Java"
+    projectDescription.set(extra["projectDescription"].toString())
+    projectUrl.set("https://github.com/DanySK/Thread-Inheritable-Resource-Loader-for-Java")
+    projectLongName.set("Thread Inheritable Resource Loader for Java")
+    scmConnection.set("scm:git:https://github.com/DanySK/Thread-Inheritable-Resource-Loader-for-Java")
 }
 
 if (System.getenv("CI") == true.toString()) {
