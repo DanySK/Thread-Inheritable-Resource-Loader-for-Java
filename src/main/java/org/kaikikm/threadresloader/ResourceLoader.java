@@ -5,27 +5,29 @@ import java.net.URL;
 import java.util.Collection;
 
 /**
- * Static class that offers a thread-dependent resource loading. Each thread has independent, configurable, runtime-modifiable classpath for resource loading.
- *
+ * Static class that offers a thread-dependent resource loading.
+ * Each thread has independent, configurable, runtime-modifiable classpath for resource loading.
  */
 public final class ResourceLoader {
 
     private ResourceLoader() {
     }
 
-    private static final InheritableThreadLocal<AccessibleURLClassLoader> CLASS_LOADER = new InheritableThreadLocal<AccessibleURLClassLoader>() {
-        @Override
-        protected AccessibleURLClassLoader initialValue() {
-            return new AccessibleURLClassLoader();
-        }
-        @Override
-        protected AccessibleURLClassLoader childValue(final AccessibleURLClassLoader parentValue) {
-            return new AccessibleURLClassLoader(parentValue);
-        }
-    };
+    private static final InheritableThreadLocal<AccessibleURLClassLoader> CLASS_LOADER =
+        new InheritableThreadLocal<AccessibleURLClassLoader>() {
+            @Override
+            protected AccessibleURLClassLoader initialValue() {
+                return new AccessibleURLClassLoader();
+            }
+            @Override
+            protected AccessibleURLClassLoader childValue(final AccessibleURLClassLoader parentValue) {
+                return new AccessibleURLClassLoader(parentValue);
+            }
+        };
 
     /**
-     * Set current thread resource loader with default thread resource loading settings, specified by {@link Thread#setContextClassLoader(ClassLoader)}. 
+     * Set current thread resource loader with default thread resource loading settings,
+     * specified by {@link Thread#setContextClassLoader(ClassLoader)}.
      */
     public static void setDefault() {
         ResourceLoader.CLASS_LOADER.set(new AccessibleURLClassLoader());
@@ -42,7 +44,8 @@ public final class ResourceLoader {
     }
 
     /**
-    * Set current thread resource loader with default thread resource loading settings, specified by {@link Thread#setContextClassLoader(ClassLoader)}.
+    * Set current thread resource loader with default thread resource loading settings,
+     * specified by {@link Thread#setContextClassLoader(ClassLoader)}.
     * Adds given URLs to default.
     * 
     *  @param urls URLs that have to be added
@@ -52,7 +55,8 @@ public final class ResourceLoader {
     }
 
     /**
-     * Set current thread resource loader with parent thread resource loading settings (default {@link ResourceLoader} behavior).
+     * Set current thread resource loader with parent thread resource loading settings
+     * (default {@link ResourceLoader} behavior).
      * Adds given URLs to default.
      * 
      *  @param urls URLs that have to be added
@@ -62,7 +66,8 @@ public final class ResourceLoader {
     }
 
     /**
-     * Set current thread resource loader with parent thread resource loading settings (default {@link ResourceLoader} behavior).
+     * Set current thread resource loader with parent thread resource loading settings
+     * (default {@link ResourceLoader} behavior).
      * Adds given URLs to default.
      * 
      *  @param urls URLs that have to be added
@@ -82,7 +87,8 @@ public final class ResourceLoader {
     }
 
     /**
-    * Get resource's {@link InputStream}. If resource loader settings aren't previously specified it uses the parent thread settings.
+    * Get resource's {@link InputStream}.
+     * If resource loader settings aren't previously specified it uses the parent thread settings.
     * 
     * @param path Resource's path
     * @return Resource's URL
