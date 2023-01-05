@@ -100,7 +100,7 @@ public final class ResourceLoader {
 
     /**
      * Add URL to for resource searching for current thread.
-     * @param url 
+     * @param url the URL to add.
      */
     public static void addURL(final URL url) {
         ResourceLoader.CLASS_LOADER.get().addURL(url);
@@ -123,7 +123,7 @@ public final class ResourceLoader {
      * 
      * @param name Fully qualified name of the desired class
      * @return Class object representing the desired class
-     * @throws ClassNotFoundException 
+     * @throws ClassNotFoundException if the class cannot be found.
      */
     public static Class<?> classForName(final String name) throws ClassNotFoundException {
         return classForName(name, true);
@@ -137,7 +137,7 @@ public final class ResourceLoader {
      * @param initialize If true the class will be initialized
      * @param name Fully qualified name of the desired class
      * @return Class Object representing the desired class
-     * @throws ClassNotFoundException 
+     * @throws ClassNotFoundException if the class cannot be found.
      */
     public static Class<?> classForName(final String name, final boolean initialize) throws ClassNotFoundException {
         return Class.forName(name, initialize, ResourceLoader.CLASS_LOADER.get());
