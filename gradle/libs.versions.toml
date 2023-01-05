@@ -5,7 +5,7 @@ kotlin = "1.8.0"
 
 [libraries]
 commons-io = "commons-io:commons-io:2.11.0"
-guava = "com.google.guava:guava:30.1.1-jre"
+guava = "com.google.guava:guava:31.1-jre"
 junit = "junit:junit:4.13.2"
 
 [bundles]
