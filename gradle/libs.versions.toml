@@ -1,7 +1,7 @@
 [versions]
 
 [libraries]
-commons-io = "commons-io:commons-io:2.13.0"
+commons-io = "commons-io:commons-io:2.14.0"
 guava = "com.google.guava:guava:32.1.2-jre"
 junit = "junit:junit:4.13.2"
 
