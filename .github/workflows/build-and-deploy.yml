@@ -18,6 +18,7 @@ jobs:
         uses: DanySK/action-checkout@0.2.14
       - uses: DanySK/build-check-deploy-gradle-action@2.4.11
         with:
+          java-version: 21
           # Dry-deployment
           deploy-command: >-
             ./gradlew uploadAll close --parallel
@@ -62,6 +63,7 @@ jobs:
           node-version: ${{ steps.node-version.outputs.version }}
       - uses: DanySK/build-check-deploy-gradle-action@2.4.11
         with:
+          java-version: 21
           build-command: true
           check-command: true
           deploy-command: |
