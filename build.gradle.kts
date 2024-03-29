@@ -52,3 +52,13 @@ publishing {
         }
     }
 }
+
+tasks.withType<Checkstyle>().configureEach {
+    multiJvm {
+        javaLauncher.set(
+            javaToolchains.launcherFor {
+                languageVersion.set(JavaLanguageVersion.of(latestJavaSupportedByGradle))
+            }
+        )
+    }
+}
