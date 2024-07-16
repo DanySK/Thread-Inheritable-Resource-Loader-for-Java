@@ -18,4 +18,4 @@ gitHooks {
     createHooks()
 }
 
-rootProject.name = "thread-inheritable-resource-loader".toLowerCase()
+rootProject.name = "thread-inheritable-resource-loader".lowercase()
