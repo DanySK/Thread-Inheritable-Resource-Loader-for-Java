@@ -16,3 +16,4 @@ prepare_environment.sh
 out/
 .DS_Store
 secrets.asc
+node_modules/
