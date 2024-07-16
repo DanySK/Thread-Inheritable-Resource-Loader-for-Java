@@ -12,6 +12,10 @@ repositories {
     mavenCentral()
 }
 
+multiJvm {
+    jvmVersionForCompilation.set(8)
+}
+
 dependencies {
     testImplementation(libs.commons.io)
     testImplementation(libs.guava)
