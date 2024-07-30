@@ -32,7 +32,7 @@ public class TestThreadLocals {
      */
     @Test
     public void testThreadLocals() throws InterruptedException {
-        final ArrayList<Integer> arr = new ArrayList<>(10);
+        final List<Integer> arr = new ArrayList<>(10);
         arr.add(0, THREAD_LOCAL.get());
         // NOPMD: false positive, removing the explicit boxing leads to an ambiguous method call.
         assertEquals(Integer.valueOf(0), arr.get(0)); // NOPMD
@@ -58,7 +58,7 @@ public class TestThreadLocals {
      */
     @Test
     public void testThreadLocalsInit() throws InterruptedException {
-        final ArrayList<Integer> arr = new ArrayList<>(10);
+        final List<Integer> arr = new ArrayList<>(10);
         arr.add(0, null);
         final CountDownLatch cl = new CountDownLatch(2);
         new TestThread(1, cl, arr, THREAD_LOCAL::get) {
