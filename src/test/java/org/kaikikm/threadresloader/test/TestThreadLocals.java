@@ -73,7 +73,7 @@ public class TestThreadLocals {
         assertEquals(Integer.valueOf(1), arr.get(2));
     }
 
-    private abstract class TestThread extends Thread {
+    private abstract static class TestThread extends Thread {
         private final int id;
         private final CountDownLatch cl;
         private final List<Integer> res;
