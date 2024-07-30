@@ -16,7 +16,7 @@ import org.junit.Test;
  */
 public class TestThreadLocals {
 
-    private static final InheritableThreadLocal<Integer> val = new InheritableThreadLocal<Integer>() {
+    private static final InheritableThreadLocal<Integer> THREAD_LOCAL = new InheritableThreadLocal<Integer>() {
         @Override
         protected Integer initialValue() {
             return 0;
@@ -34,13 +34,13 @@ public class TestThreadLocals {
     @Test
     public void testThreadLocals() throws InterruptedException {
         final ArrayList<Integer> arr = new ArrayList<>(10);
-        arr.add(0, val.get());
+        arr.add(0, THREAD_LOCAL.get());
         assertEquals(Integer.valueOf(0), arr.get(0));
         final CountDownLatch cl = new CountDownLatch(2);
         new TestThread(1, cl, arr, () -> null) {
             @Override
             public void operation() {
-                new TestThread(2, cl, arr, () -> val.get()) {
+                new TestThread(2, cl, arr, () -> THREAD_LOCAL.get()) {
                     @Override
                     public void operation() {
                     }
@@ -60,10 +60,10 @@ public class TestThreadLocals {
         final ArrayList<Integer> arr = new ArrayList<>(10);
         arr.add(0, null);
         final CountDownLatch cl = new CountDownLatch(2);
-        new TestThread(1, cl, arr, () -> val.get()) {
+        new TestThread(1, cl, arr, () -> THREAD_LOCAL.get()) {
             @Override
             public void operation() {
-                new TestThread(2, cl, arr, () -> val.get()) {
+                new TestThread(2, cl, arr, () -> THREAD_LOCAL.get()) {
                     @Override
                     public void operation() {
                     }
