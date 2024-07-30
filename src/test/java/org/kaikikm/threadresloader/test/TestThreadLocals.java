@@ -79,13 +79,6 @@ public class TestThreadLocals {
         private final List<Integer> res;
         private final Supplier<Integer> sup;
 
-        /**
-         *
-         * @param id
-         * @param cl
-         * @param res
-         * @param sup
-         */
         TestThread(final int id, final CountDownLatch cl, final List<Integer> res, final Supplier<Integer> sup) {
             this.id = id;
             this.cl = cl;
