@@ -16,7 +16,8 @@ import org.junit.Test;
  */
 public class TestThreadLocals {
 
-    private static final InheritableThreadLocal<Integer> THREAD_LOCAL = new InheritableThreadLocal<Integer>() {
+    // False positive, using the diamond operator is not possible with this version of Java
+    private static final InheritableThreadLocal<Integer> THREAD_LOCAL = new InheritableThreadLocal<Integer>() { // NOPMD
         @Override
         protected Integer initialValue() {
             return 0;
