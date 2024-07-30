@@ -16,7 +16,7 @@ public final class ResourceLoader {
     }
 
     private static final InheritableThreadLocal<AccessibleURLClassLoader> CLASS_LOADER =
-        new InheritableThreadLocal<AccessibleURLClassLoader>() {
+        new InheritableThreadLocal<AccessibleURLClassLoader>() { // NOPMD: false positive
             @Override
             protected AccessibleURLClassLoader initialValue() {
                 return new AccessibleURLClassLoader();
