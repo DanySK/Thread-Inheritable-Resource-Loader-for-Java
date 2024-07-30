@@ -11,12 +11,12 @@ import java.util.function.Supplier;
 import org.junit.Test;
 
 /**
- * 
+ *
  *
  */
 public class TestThreadLocals {
 
-    private static InheritableThreadLocal<Integer> val = new InheritableThreadLocal<Integer>() {
+    private static final InheritableThreadLocal<Integer> val = new InheritableThreadLocal<Integer>() {
         @Override
         protected Integer initialValue() {
             return 0;
@@ -28,8 +28,8 @@ public class TestThreadLocals {
     };
 
     /**
-     * 
-     * @throws InterruptedException 
+     *
+     * @throws InterruptedException
      */
     @Test
     public void testThreadLocals() throws InterruptedException {
@@ -52,8 +52,8 @@ public class TestThreadLocals {
     }
 
     /**
-     * 
-     * @throws InterruptedException 
+     *
+     * @throws InterruptedException
      */
     @Test
     public void testThreadLocalsInit() throws InterruptedException {
@@ -81,11 +81,11 @@ public class TestThreadLocals {
         private final Supplier<Integer> sup;
 
         /**
-         * 
-         * @param id 
-         * @param cl 
-         * @param res 
-         * @param sup 
+         *
+         * @param id
+         * @param cl
+         * @param res
+         * @param sup
          */
         TestThread(final int id, final CountDownLatch cl, final List<Integer> res, final Supplier<Integer> sup) {
             this.id = id;
