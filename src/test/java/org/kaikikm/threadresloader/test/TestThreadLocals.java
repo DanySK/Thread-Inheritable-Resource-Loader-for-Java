@@ -28,7 +28,6 @@ public class TestThreadLocals {
     };
 
     /**
-     *
      * @throws InterruptedException
      */
     @Test
@@ -40,7 +39,7 @@ public class TestThreadLocals {
         new TestThread(1, cl, arr, () -> null) {
             @Override
             public void operation() {
-                new TestThread(2, cl, arr, () -> THREAD_LOCAL.get()) {
+                new TestThread(2, cl, arr, THREAD_LOCAL::get) {
                     @Override
                     public void operation() {
                     }
@@ -60,10 +59,10 @@ public class TestThreadLocals {
         final ArrayList<Integer> arr = new ArrayList<>(10);
         arr.add(0, null);
         final CountDownLatch cl = new CountDownLatch(2);
-        new TestThread(1, cl, arr, () -> THREAD_LOCAL.get()) {
+        new TestThread(1, cl, arr, THREAD_LOCAL::get) {
             @Override
             public void operation() {
-                new TestThread(2, cl, arr, () -> THREAD_LOCAL.get()) {
+                new TestThread(2, cl, arr, THREAD_LOCAL::get) {
                     @Override
                     public void operation() {
                     }
