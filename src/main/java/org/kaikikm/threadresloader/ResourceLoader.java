@@ -4,8 +4,6 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Collection;
 
-import static java.lang.Class.*;
-
 /**
  * Static class that offers a thread-dependent resource loading.
  * Each thread has independent, configurable, runtime-modifiable classpath for resource loading.
@@ -142,7 +140,7 @@ public final class ResourceLoader {
      * @throws ClassNotFoundException if the class cannot be found.
      */
     public static Class<?> classForName(final String name, final boolean initialize) throws ClassNotFoundException {
-        return forName(name, initialize, CLASS_LOADER.get());
+        return Class.forName(name, initialize, CLASS_LOADER.get());
     }
 
 }
