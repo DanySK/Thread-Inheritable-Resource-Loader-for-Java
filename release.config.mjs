@@ -1,7 +1,7 @@
 const publishCmd = `
 ./gradlew uploadAllPublicationsToMavenCentralNexus releaseStagingRepositoryOnMavenCentral || exit 1
 `
-import config from 'semantic-release-preconfigured-conventional-commits' assert { type: "json" };
+import config from 'semantic-release-preconfigured-conventional-commits' with { type: "json" };
 config.plugins.push(
     [
         "@semantic-release/exec",
