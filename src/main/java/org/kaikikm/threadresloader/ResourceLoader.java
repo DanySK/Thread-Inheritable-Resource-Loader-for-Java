@@ -6,24 +6,26 @@ import java.util.Collection;
 
 /**
  * Static class that offers a thread-dependent resource loading.
- * Each thread has independent, configurable, runtime-modifiable classpath for resource loading.
+ * Each thread has an independent, configurable, runtime-modifiable classpath for resource loading.
  */
 public final class ResourceLoader {
 
-    private ResourceLoader() {
-    }
-
     private static final InheritableThreadLocal<AccessibleURLClassLoader> CLASS_LOADER =
         new InheritableThreadLocal<AccessibleURLClassLoader>() { // NOPMD: false positive
-            @Override
+
+        @Override
             protected AccessibleURLClassLoader initialValue() {
                 return new AccessibleURLClassLoader();
             }
+
             @Override
             protected AccessibleURLClassLoader childValue(final AccessibleURLClassLoader parentValue) {
                 return new AccessibleURLClassLoader(parentValue);
             }
         };
+
+    private ResourceLoader() {
+    }
 
     /**
      * Set current thread resource loader with default thread resource loading settings,
@@ -45,12 +47,12 @@ public final class ResourceLoader {
     }
 
     /**
-    * Set current thread resource loader with default thread resource loading settings,
+     * Set current thread resource loader with default thread resource loading settings,
      * specified by {@link Thread#setContextClassLoader(ClassLoader)}.
-    * Adds given URLs to default.
-    *
-    *  @param urls URLs that have to be added
-    */
+     * Adds given URLs to default.
+     *
+     *  @param urls URLs that have to be added
+     */
     public static void setURLs(final Collection<URL> urls) {
         setURLs(urls.toArray(new URL[0]));
     }
@@ -78,7 +80,7 @@ public final class ResourceLoader {
     }
 
     /**
-     * Get resource's URL. If resource loader settings aren't previously specified it uses the parent thread settings.
+     * Get resource's URL. If resource loader settings aren't previously specified, it uses the parent thread settings.
      *
      * @param path Resource's path
      * @return Resource's URL
@@ -88,18 +90,19 @@ public final class ResourceLoader {
     }
 
     /**
-    * Get resource's {@link InputStream}.
-     * If resource loader settings aren't previously specified it uses the parent thread settings.
-    *
-    * @param path Resource's path
-    * @return Resource's URL
-    */
+     * Get resource's {@link InputStream}.
+     * If resource loader settings aren't previously specified, it uses the parent thread settings.
+     *
+     * @param path Resource's path
+     * @return Resource's URL
+     */
     public static InputStream getResourceAsStream(final String path) {
         return CLASS_LOADER.get().getResourceAsStream(path);
     }
 
     /**
-     * Add URL to for resource searching for current thread.
+     * Add URL to for resource searching for the current thread.
+     *
      * @param url the URL to add.
      */
     public static void addURL(final URL url) {
@@ -107,8 +110,7 @@ public final class ResourceLoader {
     }
 
     /**
-     *
-     * @return Class Loader that library uses for current thread
+     * @return Class Loader used for the current thread
      */
     public static ClassLoader getClassLoader() {
         return CLASS_LOADER.get();
@@ -134,7 +136,7 @@ public final class ResourceLoader {
      * local classpath will override classes with same name that are in the system classpath or in the parent thread
      * classpath (reverse behavior compared to standard java {@link ClassLoader})
      *
-     * @param initialize If true the class will be initialized
+     * @param initialize If true, the class will be initialized
      * @param name Fully qualified name of the desired class
      * @return Class Object representing the desired class
      * @throws ClassNotFoundException if the class cannot be found.

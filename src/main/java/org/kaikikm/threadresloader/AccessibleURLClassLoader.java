@@ -35,7 +35,7 @@ class AccessibleURLClassLoader extends URLClassLoader {
         if (c == null) {
                 try {
                     c = findClass(name);
-                } catch (ClassNotFoundException e) {
+                } catch (final ClassNotFoundException e) {
                     c = super.loadClass(name, resolve);
                 }
         }

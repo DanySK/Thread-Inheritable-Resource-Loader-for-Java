@@ -20,13 +20,14 @@ import org.kaikikm.dummy.TestClass;
 import org.kaikikm.threadresloader.ResourceLoader;
 
 /**
- * 
+ *
  *
  */
 public class TestThreadResLoader {
     private static final String CREATED_FILE = "test_add.txt";
+
     /**
-     * 
+     *
      */
     @Test
     public void testClasspathResourceLoading() {
@@ -36,7 +37,7 @@ public class TestThreadResLoader {
     }
 
     /**
-     * 
+     *
      */
     @Test
     public void testCustomClasspathResourceLoading() throws IOException {
@@ -44,19 +45,19 @@ public class TestThreadResLoader {
         final File testFile = new File(dir.getAbsolutePath() + File.separator + CREATED_FILE);
         assertTrue(testFile.createNewFile());
         ResourceLoader.setURLs(dir.toURI().toURL());
-        assertNotNull(ResourceLoader.getResource("test_add.txt"));
+        assertNotNull(ResourceLoader.getResource(CREATED_FILE));
         FileUtils.deleteDirectory(dir);
     }
 
     /**
-     * 
+     *
      */
     @Test
     public void testParentThreadClasspathResourceLoading() throws IOException, InterruptedException {
         final File dir = Files.createTempDirectory("test-thread-inheritable-resource-loader").toFile();
         assertTrue(new File(dir.getAbsolutePath() + File.separator + CREATED_FILE).createNewFile());
         ResourceLoader.setURLs(dir.toURI().toURL());
-        assertNotNull(ResourceLoader.getResource("test_add.txt"));
+        assertNotNull(ResourceLoader.getResource(CREATED_FILE));
         TestThread t = new TestThread() {
             @Override
             public void run() {
@@ -94,7 +95,7 @@ public class TestThreadResLoader {
         try {
             ResourceLoader.classForName("TestClass");
             fail();
-        } catch (ClassNotFoundException e) {
+        } catch (final ClassNotFoundException e) {
             assertNotNull(e.getMessage());
         }
         /*
@@ -112,7 +113,7 @@ public class TestThreadResLoader {
          * test new class
          */
         Class<?> c = ResourceLoader.classForName("org.kaikikm.dummy.TestClass2");
-        Object o =  c.getDeclaredConstructor().newInstance();
+        Object o = c.getDeclaredConstructor().newInstance();
         Method method = c.getDeclaredMethod("dummyMethod2");
         assertEquals(2, method.invoke(o));
         /*
@@ -126,10 +127,13 @@ public class TestThreadResLoader {
     }
 
     private static class TestThread extends Thread {
+
         private URL resource;
+
         public URL getResource() {
             return this.resource;
         }
+
         public void setResource(final URL resource) {
             this.resource = resource;
         }
