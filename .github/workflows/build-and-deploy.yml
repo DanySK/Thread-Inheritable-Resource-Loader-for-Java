@@ -65,6 +65,7 @@ jobs:
           node-version-file: package.json
       - uses: DanySK/build-check-deploy-gradle-action@4.0.1
         with:
+          retries-on-failure: '1'
           java-version: 21
           build-command: true
           check-command: true
