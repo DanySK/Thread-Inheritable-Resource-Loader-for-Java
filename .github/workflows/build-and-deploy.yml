@@ -21,7 +21,11 @@ jobs:
           java-version: 21
           # Dry-deployment
           deploy-command: >-
-            ./gradlew uploadAll close dropStagingRepositoryOnMavenCentral --parallel
+            ./gradlew
+            publishAllPublicationsToProjectLocalRepository
+            zipMavenCentralPortalPublication
+            releaseMavenCentralPortalPublication
+            --dry-run
           should-run-codecov: ${{ runner.os == 'Linux' }}
           codecov-token: ${{ secrets.CODECOV_TOKEN }}
           should-deploy: >-
