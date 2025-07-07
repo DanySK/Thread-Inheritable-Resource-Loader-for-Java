@@ -36,8 +36,8 @@ public class TestThreadLocals {
     public void testThreadLocals() throws InterruptedException {
         final List<Integer> arr = new ArrayList<>(10);
         arr.add(0, THREAD_LOCAL.get());
-        // NOPMD: false positive, removing the explicit boxing leads to an ambiguous method call.
-        assertEquals(Integer.valueOf(0), arr.get(0)); // NOPMD
+        assertEquals(Integer.class, arr.get(0).getClass());
+        assertEquals(0, (int) arr.get(0));
         final CountDownLatch cl = new CountDownLatch(2);
         new AbstractTestThread(1, cl, arr, () -> null) {
             @Override
@@ -50,8 +50,8 @@ public class TestThreadLocals {
             }
         }.start();
         cl.await();
-        // NOPMD: false positive, removing the explicit boxing leads to an ambiguous method call.
-        assertEquals(Integer.valueOf(2), arr.get(2)); // NOPMD
+        assertEquals(Integer.class, arr.get(2).getClass());
+        assertEquals(2, (int) arr.get(2));
     }
 
     /**
@@ -73,8 +73,8 @@ public class TestThreadLocals {
             }
         }.start();
         cl.await();
-        // NOPMD: false positive, removing the explicit boxing leads to an ambiguous method call.
-        assertEquals(Integer.valueOf(1), arr.get(2)); // NOPMD
+        assertEquals(Integer.class, arr.get(2).getClass());
+        assertEquals(1, (int) arr.get(2));
     }
 
     private abstract static class AbstractTestThread extends Thread {

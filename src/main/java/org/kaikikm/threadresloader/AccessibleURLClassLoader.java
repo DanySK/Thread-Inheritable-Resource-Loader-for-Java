@@ -24,7 +24,7 @@ class AccessibleURLClassLoader extends URLClassLoader {
     }
 
     @Override
-    public void addURL(final URL url) { // NOPMD
+    public void addURL(final URL url) {
         super.addURL(url);
     }
 
