@@ -1,11 +1,5 @@
 package org.kaikikm.threadresloader.test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -15,22 +9,28 @@ import java.net.URL;
 import java.nio.file.Files;
 
 import org.apache.commons.io.FileUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.kaikikm.dummy.TestClass;
 import org.kaikikm.threadresloader.ResourceLoader;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  *
  *
  */
-public class TestThreadResLoader {
+class TestThreadResLoader {
     private static final String CREATED_FILE = "test_add.txt";
 
     /**
      *
      */
     @Test
-    public void testClasspathResourceLoading() {
+    void testClasspathResourceLoading() {
         assertNotNull(ResourceLoader.getResource("test.txt"));
         assertNotNull(ResourceLoader.getResource("testfolder"));
         assertNotNull(ResourceLoader.getResource("testfolder/test1.txt"));
@@ -40,7 +40,7 @@ public class TestThreadResLoader {
      *
      */
     @Test
-    public void testCustomClasspathResourceLoading() throws IOException {
+    void testCustomClasspathResourceLoading() throws IOException {
         final File dir = Files.createTempDirectory("test-thread-inheritable-resource-loader").toFile();
         final File testFile = new File(dir.getAbsolutePath() + File.separator + CREATED_FILE);
         assertTrue(testFile.createNewFile());
@@ -53,7 +53,7 @@ public class TestThreadResLoader {
      *
      */
     @Test
-    public void testParentThreadClasspathResourceLoading() throws IOException, InterruptedException {
+    void testParentThreadClasspathResourceLoading() throws IOException, InterruptedException {
         final File dir = Files.createTempDirectory("test-thread-inheritable-resource-loader").toFile();
         assertTrue(new File(dir.getAbsolutePath() + File.separator + CREATED_FILE).createNewFile());
         ResourceLoader.setURLs(dir.toURI().toURL());
@@ -85,7 +85,7 @@ public class TestThreadResLoader {
      *
      */
     @Test
-    public void testClassLoading() throws
+    void testClassLoading() throws
         InstantiationException,
         IllegalAccessException,
         ClassNotFoundException,
@@ -104,7 +104,7 @@ public class TestThreadResLoader {
         final File root = new File(System.getProperty("user.dir"));
         final File jarLocation = new File(root, "externTestResources");
         ResourceLoader.addURL(jarLocation.toURI().toURL());
-        assertNotNull("Exists dummy jar file on: " + jarLocation.getPath(), ResourceLoader.getResource("DummyTestClasses.jar"));
+        assertNotNull(ResourceLoader.getResource("DummyTestClasses.jar"), "Exists dummy jar file on: " + jarLocation.getPath());
         /*
          * Add JAR
          */

@@ -17,10 +17,15 @@ multiJvm {
 }
 
 dependencies {
+    testImplementation(platform(libs.junit))
     testImplementation(libs.commons.io)
     testImplementation(libs.guava)
-    testImplementation(libs.junit)
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
+
+tasks.withType<Test>().configureEach { useJUnitPlatform() }
 
 group = "org.danilopianini"
 publishOnCentral {

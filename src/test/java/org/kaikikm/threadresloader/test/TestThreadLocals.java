@@ -1,19 +1,19 @@
 package org.kaikikm.threadresloader.test;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.function.Supplier;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  *
  *
  */
-public class TestThreadLocals {
+class TestThreadLocals {
 
     // False positive, using the diamond operator is not possible with this version of Java
     private static final InheritableThreadLocal<Integer> THREAD_LOCAL = new InheritableThreadLocal<Integer>() { // NOPMD
@@ -33,7 +33,7 @@ public class TestThreadLocals {
      * @throws InterruptedException never
      */
     @Test
-    public void testThreadLocals() throws InterruptedException {
+    void testThreadLocals() throws InterruptedException {
         final List<Integer> arr = new ArrayList<>(10);
         arr.add(0, THREAD_LOCAL.get());
         assertEquals(Integer.class, arr.get(0).getClass());
@@ -58,7 +58,7 @@ public class TestThreadLocals {
      * @throws InterruptedException never
      */
     @Test
-    public void testThreadLocalsInit() throws InterruptedException {
+    void testThreadLocalsInit() throws InterruptedException {
         final List<Integer> arr = new ArrayList<>(10);
         arr.add(0, null);
         final CountDownLatch cl = new CountDownLatch(2);
