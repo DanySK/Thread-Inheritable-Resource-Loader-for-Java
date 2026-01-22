@@ -71,3 +71,11 @@ tasks.withType<Checkstyle>().configureEach {
         )
     }
 }
+
+tasks.withType<com.github.spotbugs.snom.SpotBugsTask>().configureEach {
+    launcher.set(
+        javaToolchains.launcherFor {
+            languageVersion.set(JavaLanguageVersion.of(multiJvm.latestJavaSupportedByGradle))
+        }
+    )
+}
