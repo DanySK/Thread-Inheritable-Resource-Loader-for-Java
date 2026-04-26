@@ -3,7 +3,7 @@
 [libraries]
 commons-io = "commons-io:commons-io:2.22.0"
 guava = "com.google.guava:guava:33.6.0-jre"
-junit = "org.junit:junit-bom:5.14.3"
+junit = "org.junit:junit-bom:5.14.4"
 
 [bundles]
 
