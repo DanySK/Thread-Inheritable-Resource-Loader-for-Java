@@ -8,7 +8,7 @@ junit = "org.junit:junit-bom:5.14.4"
 [bundles]
 
 [plugins]
-gitSemVer = "org.danilopianini.git-sensitive-semantic-versioning-gradle-plugin:7.0.17"
+gitSemVer = "org.danilopianini.git-sensitive-semantic-versioning-gradle-plugin:7.0.18"
 java-qa = "org.danilopianini.gradle-java-qa:1.172.0"
 multiJvmTesting = "org.danilopianini.multi-jvm-test-plugin:4.3.2"
 publishOnCentral = "org.danilopianini.publish-on-central:9.2.2"
