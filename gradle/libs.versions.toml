@@ -9,7 +9,7 @@ junit = "org.junit:junit-bom:5.14.4"
 
 [plugins]
 gitSemVer = "org.danilopianini.git-sensitive-semantic-versioning-gradle-plugin:7.0.19"
-java-qa = "org.danilopianini.gradle-java-qa:1.172.0"
+java-qa = "org.danilopianini.gradle-java-qa:1.176.0"
 multiJvmTesting = "org.danilopianini.multi-jvm-test-plugin:4.3.6"
 publishOnCentral = "org.danilopianini.publish-on-central:9.2.4"
 taskTree = "com.dorongold.task-tree:4.0.1"
